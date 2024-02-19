@@ -32,7 +32,9 @@ select * from Persons where Country in ('Spain','Turkey') and Salary between 100
 --6
 select WorkPlace from Persons where WorkPlace like '%LLC%' or WorkPlace like '%PC%' or WorkPlace like '%LLP%'
 --7 
-select Email, IIF(LEN(Email)>2,'more than 2 dots','less than 2 dots') as MAILINFO from Persons 
+declare @dotCount INT;
+select Email,iif(len(Email)-LEN(replace(Email,'.',''))>2,'more than 2 dots','less than 2 dots') as MAILINFO
+from Persons
 --8
 select * from Persons where PINcode like '%51'
 --9
